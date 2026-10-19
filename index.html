@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080d19">
+  <meta name="description" content="J.A.R.V.I.S Mobile Edition — a personal AI assistant built for your phone.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <title>J.A.R.V.I.S Mobile Edition</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">J</div>
+      <div class="brand-copy">
+        <h1>J.A.R.V.I.S <span>Mobile Edition</span></h1>
+        <p><span class="status-dot"></span> Personal AI interface</p>
+      </div>
+      <button id="settingsBtn" class="icon-btn" aria-label="Settings" title="Settings">⚙</button>
+    </header>
+
+    <main>
+      <section class="hero" id="welcome">
+        <div class="eyebrow">SYSTEM ONLINE</div>
+        <h2>How can I help<br><span>you today?</span></h2>
+        <p>Ask a question, use your voice, or attach an image for analysis.</p>
+        <div class="quick-actions">
+          <button class="suggestion" data-prompt="Help me plan my day with 3 practical priorities.">✦ Plan my day</button>
+          <button class="suggestion" data-prompt="Explain a difficult topic in simple English with an example.">⌘ Explain something</button>
+          <button class="suggestion" data-prompt="Give me five useful ideas for a small business.">↗ Brainstorm ideas</button>
+        </div>
+      </section>
+
+      <section id="chat" class="chat" aria-live="polite" aria-label="Conversation"></section>
+      <div id="busy" class="busy hidden"><span></span><span></span><span></span> J.A.R.V.I.S is thinking…</div>
+    </main>
+
+    <form id="composer" class="composer">
+      <div id="imagePreview" class="image-preview hidden">
+        <img id="previewImg" alt="Selected image preview">
+        <button type="button" id="removeImage" aria-label="Remove image">×</button>
+      </div>
+      <textarea id="messageInput" rows="1" placeholder="Message J.A.R.V.I.S…" aria-label="Message"></textarea>
+      <div class="composer-tools">
+        <div class="tool-left">
+          <button type="button" id="attachBtn" class="tool-btn" title="Attach image">＋ Image</button>
+          <button type="button" id="voiceBtn" class="tool-btn" title="Use voice input">🎙 Voice</button>
+          <input id="imageInput" type="file" accept="image/*" hidden>
+        </div>
+        <button type="submit" id="sendBtn" class="send-btn">Send ↑</button>
+      </div>
+      <p class="privacy-note">AI responses require your configured server endpoint. Do not enter private secrets in chat.</p>
+    </form>
+    <footer>J.A.R.V.I.S Mobile Edition <span>•</span> Open-source starter project</footer>
+  </div>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" class="settings">
+      <div class="dialog-heading"><div><div class="eyebrow">CONFIGURATION</div><h2>Assistant settings</h2></div><button class="icon-btn" value="cancel" aria-label="Close">×</button></div>
+      <label for="apiBase">Cloudflare Worker URL</label>
+      <input id="apiBase" type="url" placeholder="https://your-worker.your-subdomain.workers.dev">
+      <p class="help">Enter the URL of your deployed Worker. Keep your Gemini API key in Cloudflare Worker secrets, never in this app.</p>
+      <label class="toggle-row"><input id="speakReplies" type="checkbox"> Read replies aloud</label>
+      <div class="dialog-actions"><button id="saveSettings" class="send-btn" value="default">Save settings</button></div>
+    </form>
+  </dialog>
+  <script src="./script.js" defer></script>
+</body>
+</html>
